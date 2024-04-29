@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="css/personal account light.css" id="theme"> <!-- Подключаем начальную тему -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div id="navbar">
+            <div id="navbar">
+                <div class="logo">
+                    <i class="fas fa-meteor"></i>
+                    <div class="logo-text">METATEST</div>
+                </div>
+            </div>
+            
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="fff.html">Подписки</a></li>
+                <li><a href="fff.html">Предметы</a></li>
+                <li><a href="test.html">Сдать пробный тест</a></li>
+                <li><a href="about us.html">О нас</a></li>
+                <li><a href="branches.html">Наши филиалы</a></li>
+                <li><a href="personal account.html">Войти</a></li>
+                <li>
+                    <ul class="submenu">
+                        <li><a href="fff.html">Русский</a></li>
+                        <li><a href="fff.html">Казахский</a></li>
+                        <li><a href="fff.html">Английский</a></li>
+                    </ul>
+                </li>
+                
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="#"><i class="far fa-moon"></i></a>
+            </ul>
+            <a href="#"><i class="fas fa-bars"></i></a>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                // При клике на иконку глобуса
+                $('.fa-globe').click(function(){
+                    // Показываем или скрываем подменю
+                    $('.submenu').toggle();
+                });
+            });
+
+            $(document).ready(function(){
+                // Обработчик события клика по иконке
+                $('.fa-moon').click(function(){
+                    // Проверяем текущую тему
+                    var currentTheme = $('#theme').attr('href');
+                    // Если текущая тема - светлая, переключаем на темную и наоборот
+                    if(currentTheme == 'css/personal account light.css'){
+                        $('#theme').attr('href', 'css/personal account dark.css');
+                    } else {
+                        $('#theme').attr('href', 'css/personal account light.css');
+                        }
+                });
+            });
+
+            $(document).ready(function(){
+                $('.fa-bars').click(function(){
+                    $('#navbar ul').toggle();
+                });
+            });
+        </script>
+
+        <!-- Форма логина -->
+        <div class="login-form" id="loginForm">
+            <h2>Вход в аккаунт</h2>
+            <form id="form">
+                <input type="text" id="username" name="username" placeholder="Логин">
+                <input type="password" id="password" name="password" placeholder="Пароль">
+                <input type="submit" value="Войти">
+            </form>
+        </div>
+
+        <div class="flex-container" id="userData">
+            <div class="container table-left hidden" id="personalData">
+                <table>
+                    <tr>
+                        <th colspan="2">Личные данные</th>
+                    </tr>
+                    <tr>
+                        <td>ФИО</td>
+                        <td>Коспанова Ирина Кайратовна</td>
+                    </tr>
+                    <tr>
+                        <td>Электронная почта</td>
+                        <td>kospanova07@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Телефон</td>
+                        <td>+7 705 987 65 26</td>
+                    </tr>
+                    <tr>
+                        <td>Средний балл ЕНТ</td>
+                        <td>98</td>
+                    </tr>
+                    <tr>
+                        <td>Срок действия подписки</td>
+                        <td>28 дней</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="container table-right">
+                <div class="top-label hidden" id="topLabel">ТОР 10 за неделю</div>
+                <table id="leaderboard" class="hidden">
+                    <tr>
+                        <th>Место</th>
+                        <th>ФИО</th>
+                        <th>Максимальный бал за неделю</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Кусаинов М.Д.</td>
+                        <td>139</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Иванов В.А.</td>
+                        <td>137</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Кожахметов Е.Н.</td>
+                        <td>134</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Федоренко А.Л.</td>
+                        <td>128</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Кузнецова И.К.</td>
+                        <td>124</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Базарбаева С.Ж.</td>
+                        <td>119</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Береговой Я.Ф.</td>
+                        <td>113</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Джуринов Н.К.</td>
+                        <td>110</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Ивахненко П.Д.</td>
+                        <td>109</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Искакова А.Н.</td>
+                        <td>107</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Коспанова И.К.</td>
+                        <td>98</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
+
+                // Получаем значения логина и пароля из формы
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+
+                // Проверяем, совпадают ли введенные данные с ожидаемыми
+                if (username === "Irina" && password === "qwerty") {
+                    // Если данные правильные, скрываем форму логина и показываем таблицу с данными
+                    document.getElementById("loginForm").classList.add("hidden");
+                    document.getElementById("personalData").classList.remove("hidden");
+                    document.getElementById("topLabel").classList.remove("hidden");
+                    document.getElementById("leaderboard").classList.remove("hidden");
+                } else {
+                    // Если данные неправильные, выводим сообщение об ошибке
+                    alert("Неправильный логин или пароль. Попробуйте снова.");
+                }
+            });
+        </script>
+
+        <div class="footer">
+            <footer>
+                <p>&copy; 2024 Все права защищены. Пользовательское соглашение</p>
+                <div class="footer-images">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-vk"></i>
+                </div>
+            </footer>
+        </div>
+    </header>
+</body>
+</html>

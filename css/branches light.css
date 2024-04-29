@@ -1,0 +1,390 @@
+/* Обнуляем стандартные отступы и поля */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    position: relative; /* Установка позиции относительно тела документа */
+    
+}
+
+/* Стили для навигационного меню */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.logo .fa-meteor {
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: white;
+    margin-right: 20px;
+}
+
+.logo-text {
+    color: white;
+    margin-right: 30px;
+}
+
+#navbar, #navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#navbar {
+    height: 70px; /* Увеличиваем высоту навигационного меню */
+    background-color:#007acc;
+    display: flex; /* Используем flexbox для расположения элементов в строку */
+    align-items: center; /* Выравниваем элементы по вертикали */
+    justify-content: center; /* Выравниваем элементы по горизонтали */
+    margin-right: 0; /* Убираем отступ */
+}
+
+#navbar img {
+    margin-right: 10px; /* Отступ между логотипом и пунктами меню */
+    width: 75px;
+}
+
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar li {
+    position: relative;
+    display: inline-block;
+}
+
+#navbar li:hover::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+#navbar li:nth-child(6)::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+#navbar li a {
+    display: block;
+    padding: 20px; /* Увеличиваем отступы для большего кликабельного пространства */
+    color: white;
+    text-decoration: none;
+}
+
+/* Стили для подпункта */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #007acc;
+    z-index: 1;
+}
+
+#navbar li:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    display: block;
+}
+
+.submenu li a {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.fa-moon {
+    color: white;
+    font-size: 24px;
+    margin-left: 50px;
+}
+
+.fa-globe{
+    color: white;
+    font-size: 24px; 
+    margin-left: 50px;
+}
+
+.fa-bars{
+    display: none;
+    color: white;
+    font-size: 0px; 
+    margin-left: 50px;
+}
+
+.header{
+    width: 100%;
+    min-height: 100vh;
+    background: url(../img) no-repeat center/cover;
+    background-size: 90%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Стили для секции */
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем элементы по горизонтали */
+    width: 50%;
+}
+
+/* Стили для надписи "Наши филиалы" */
+#branchTitle {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 24px;
+    color: #007acc; /* Цвет текста */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+/* Стили для карты */
+#map {
+    width: 700px;
+    height: auto;
+    margin-top: 10px; /* Дополнительный отступ над картой */
+}
+
+#tooltip {
+    position: absolute;
+    background-color: #007acc;
+    color: white;
+    padding: 5px;
+    display: none;
+}
+
+/* Стили для диаграммы */
+#content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Опционально: сделает контейнер высотой как минимум экрана */
+    width: 50%;
+    margin-left: auto;
+    margin-top: -600px;
+}
+
+#chartContainer {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Добавляем отступ снизу для разделения диаграммы и подвала */
+}
+
+#chartContainer h2 {
+    color: #007acc; /* Задаем цвет текста */
+}
+
+
+#myChart {
+    max-width: 300px; /* Уменьшаем максимальную ширину диаграммы */
+    max-height: 300px; /* Уменьшаем максимальную высоту диаграммы */
+}
+
+/* Стили для подвала */
+.footer {
+    background-color: #007acc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed; /* Изменено на fixed */
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Устанавливаем фиксированную высоту подвала */
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Стили для иконок instagram, facebook, vk */
+.footer-images {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 30px;
+    margin-top: -30px;
+    margin-right: 10px;
+}
+
+.footer-images i {
+    margin-right: 20px; /* Расстояние между иконками */
+}
+
+@media (max-width: 1200px){
+    .fa-bars{
+        display: none;
+        color: white;
+        font-size: 0px; 
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 992px){
+    .fa-bars{
+        display: none;
+        color: white;
+        font-size: 0px; 
+        margin-left: 50px;
+    }
+
+    .fa-moon{
+        color: white;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+}
+
+@media (max-width: 768px){
+
+    .logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрируем элементы по вертикали */
+        margin-left: 30px;
+    }
+    
+    .logo .fa-meteor {
+        margin-bottom: 5px;
+        font-size: 24px;
+        color: white;
+        margin-left: 50px;
+    }
+    
+    .logo-text {
+        color: white;
+        margin-left: 70px;
+    }    
+    
+    .footer-images {
+        display: none;
+    }
+    .fa-bars {
+        display: block;
+        color: white;
+        font-size:48px; 
+        margin-left: 200px;
+    }
+
+    /* Меняем отображение при клике на иконку fa-bars */
+    #navbar ul {
+        display: none;
+        position: absolute;
+        top: 70px; /* Располагаем меню ниже шапки */
+        left: 0;
+        width: 200px; /* Ширина меню */
+        background-color: #007acc;
+        z-index: 1;
+    }
+
+    #navbar ul li {
+        display: block;
+        position: relative;
+    }
+
+    #navbar ul li:hover::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+    }
+
+    #navbar ul li a {
+        display: block;
+        padding: 15px 20px; /* Уменьшаем вертикальные отступы */
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Стили для иконок в вертикальном меню */
+    #navbar ul .fa {
+        margin-right: 10px; /* Отступ между иконкой и текстом */
+    }
+
+    .submenu{
+        display: none !important;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section {
+        width: 100%; /* Ширина секции занимает всю доступную ширину */
+    }
+
+    #chartContainer {
+        margin-top: 20px; /* Отступ сверху для диаграммы */
+    }
+
+    #map {
+        width: 90%; /* Ширина карты занимает 90% доступной ширины */
+        max-width: 90%; /* Устанавливаем максимальную ширину карты на 90% */
+        margin-bottom: 100px;
+    }
+
+    #chartContainer {
+        width: 90%; /* Ширина контейнера для диаграммы занимает 90% доступной ширины */
+        max-width: 90%; /* Устанавливаем максимальную ширину контейнера для диаграммы на 90% */
+        margin-top: 500px;
+        margin-right: 300px;
+    }
+}
+
+@media (max-width: 480px){
+    #navbar{
+        width: 100%;
+    }
+
+    .footer {
+        width: 100%;
+    }
+
+    .fa-bars {
+        display: block;
+        color: white;
+        font-size:48px; 
+        margin-right: 500px;
+
+    }
+
+    .header{
+        width: 100%;
+        min-height: 100vh;
+        background: url(img/) no-repeat center/cover;
+        background-size: 400px;
+    }
+}

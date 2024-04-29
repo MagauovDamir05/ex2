@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branches</title>
+    <!-- Подключаем библиотеку Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/branches light.css" id="theme"> <!-- Подключаем начальную тему -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div id="navbar">
+            <div id="navbar">
+                <div class="logo">
+                    <i class="fas fa-meteor"></i>
+                    <div class="logo-text">METATEST</div>
+                </div>
+            </div>
+            
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="fff.html">Подписки</a></li>
+                <li><a href="fff.html">Предметы</a></li>
+                <li><a href="test.html">Сдать пробный тест</a></li>
+                <li><a href="about us.html">О нас</a></li>
+                <li><a href="branches.html">Наши филиалы</a></li>
+                <li><a href="personal account.html">Войти</a></li>
+                <li>
+                    <ul class="submenu">
+                        <li><a href="fff.html">Русский</a></li>
+                        <li><a href="fff.html">Казахский</a></li>
+                        <li><a href="fff.html">Английский</a></li>
+                    </ul>
+                </li>
+                
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="#"><i class="far fa-moon"></i></a>
+            </ul>
+            <a href="#"><i class="fas fa-bars"></i></a>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                // При клике на иконку глобуса
+                $('.fa-globe').click(function(){
+                    // Показываем или скрываем подменю
+                    $('.submenu').toggle();
+                });
+            });
+
+            $(document).ready(function(){
+                // Обработчик события клика по иконке
+                $('.fa-moon').click(function(){
+                    // Проверяем текущую тему
+                    var currentTheme = $('#theme').attr('href');
+                    // Если текущая тема - светлая, переключаем на темную и наоборот
+                    if(currentTheme == 'css/branches light.css'){
+                        $('#theme').attr('href', 'css/branches dark.css');
+                    } else {
+                        $('#theme').attr('href', 'css/branches light.css');
+                        }
+                });
+            });
+
+            $(document).ready(function(){
+                $('.fa-bars').click(function(){
+                    $('#navbar ul').toggle();
+                });
+            });
+        </script>
+
+        <div id="container">
+            <section>
+                <h1 id="branchTitle">Наши филиалы</h1>
+                <img id="map" src="img/Kazakhstan.jpg" width="700px" height="auto" alt="Map" usemap="#image-map">
+                
+                <map name="image-map">
+                    <area shape="rect" coords="374,20,402,47" href="#1-rect" alt="Город: Петропавловск, Адрес: Пушкина 87, График работы: 10:00-18:00 ПН-ПТ, Номер: +7 705 974 55 69">
+                    <area shape="rect" coords="412,114,427,134" href="#2-rect" alt="Город: Астана, Адрес: Ленина 65, График работы: 10:00-18:00 ПН-ПТ, Номер: +7 775 874 54 74">
+                    <area shape="rect" coords="519,296,542,316" href="#3-rect" alt="Город: Алматы, Адрес: Кирова 98, График работы: 10:00-18:00 ПН-ПТ, Номер: +7 777 365 75 12">
+                    <area shape="rect" coords="94,192,113,207" href="#4-rect" alt="Город: Атырау, Адрес: Степная 48, График работы: 10:00-18:00 ПН-ПТ, Номер: +7 771 458 85 96">
+                    <area shape="rect" coords="392,333,408,349" href="#4-rect" alt="Город: Шымкент, Адрес: Курмангазы 49, График работы: 10:00-18:00 ПН-ПТ, Номер: +7 776 774 95 19">
+                </map>
+                    <div id="tooltip"></div>
+            </section>
+            
+        </div>
+
+        <div id="content-wrapper">
+            <div id="chartContainer">
+                <h2>Число свободных мест</h2>
+                <canvas id="myChart" width="200" height="200"></canvas>
+            </div>
+        </div>
+
+            <script>
+                /* Скрипт для карты */
+                const areas = document.querySelectorAll('area');
+                const tooltip = document.getElementById('tooltip');
+
+                areas.forEach(area => {
+                    area.addEventListener('mouseover', function() {
+                        const info = this.getAttribute('alt').split(', ');
+                        const city = info[0].split(': ')[1];
+                        const address = info[1].split(': ')[1];
+                        const schedule = info[2].split(': ')[1];
+                        const number = info[3].split(': ')[1];
+                        const coords = this.getBoundingClientRect();
+                        tooltip.style.top = coords.top + 'px';
+                        tooltip.style.left = coords.right + 'px';
+                        tooltip.innerHTML = '<ul><li>Город: ' + city + '</li><li>Адрес: ' + address + '</li><li>График работы: ' + schedule + '</li><li>Номер: ' + number + '</li></ul>';
+                        tooltip.style.display = 'block';
+                    });
+
+                    area.addEventListener('mouseout', function() {
+                        tooltip.style.display = 'none';
+                    });
+                });
+
+                /* Скрипт для диаграммы */
+                var ctx = document.getElementById('myChart').getContext('2d');
+                
+                // Подготовка данных
+                var cityData = {
+                    labels: ['Петропавловск', 'Астана', 'Алматы', 'Шымкент', 'Атырау'],
+                    datasets: [{
+                        data: [10, 20, 30, 15, 25],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)'
+                        ]
+                    }]
+                };
+
+                // Создаем круговую диаграмму
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: cityData,
+                    options: {
+                        animation: {
+                            animateRotate: true, // Включаем анимацию вращения
+                            animateScale: true // Включаем анимацию масштабирования
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var city = data.labels[tooltipItem.index];
+                                    var value = data.datasets[0].data[tooltipItem.index];
+                                    return city + ': ' + value;
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+        <div class="footer">
+            <footer>
+                <p>&copy; 2024 Все права защищены. Пользовательское соглашение</p>
+                <div class="footer-images">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-vk"></i>
+                </div>
+            </footer>
+        </div>
+</body>
+</html>
