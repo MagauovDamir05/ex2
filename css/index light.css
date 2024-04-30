@@ -8,7 +8,6 @@
 body {
     font-family: Arial, sans-serif;
     position: relative; /* Установка позиции относительно тела документа */
-    
 }
 
 /* Стили для навигационного меню */
@@ -39,7 +38,7 @@ body {
 
 #navbar {
     height: 70px; /* Увеличиваем высоту навигационного меню */
-    background-color:#007acc;
+    background-color: #007acc;
     display: flex; /* Используем flexbox для расположения элементов в строку */
     align-items: center; /* Выравниваем элементы по вертикали */
     justify-content: center; /* Выравниваем элементы по горизонтали */
@@ -115,26 +114,15 @@ body {
     text-decoration: none;
 }
 
-.fa-moon {
+.fa-moon,
+.fa-globe,
+.fa-bars {
     color: white;
     font-size: 24px;
     margin-left: 50px;
 }
 
-.fa-globe{
-    color: white;
-    font-size: 24px; 
-    margin-left: 50px;
-}
-
-.fa-bars{
-    display: none;
-    color: white;
-    font-size: 0px; 
-    margin-left: 50px;
-}
-
-.header{
+.header {
     width: 100%;
     min-height: 100vh;
     background: url(../img/fon.jpg) no-repeat center/cover;
@@ -150,7 +138,7 @@ body {
     bottom: 300px; /* Расположение относительно нижней границы страницы */
 }
 
-.carousel__item{
+.carousel__item {
     background-color: #007acc; /* Цвет фона элемента слайдера */
     padding: 12px; /* Внутренний отступ элемента слайдера */
     opacity: 0; /* Начальная прозрачность элемента */
@@ -158,11 +146,11 @@ body {
     color: #fff; /* Цвет текста элемента слайдера */
 }
 
-.carousel__info{
+.carousel__info {
     flex-grow: 1; /* Установка флекс-роста для информационного блока слайдера */
 }
 
-.carousel__title{
+.carousel__title {
     font-size: 20px; /* Размер шрифта заголовка */
     text-transform: uppercase; /* Преобразование текста заголовка в верхний регистр */
     margin: 0 0 15px 0; /* Внешние отступы заголовка */
@@ -179,30 +167,32 @@ body {
 }
 
 @keyframes vertical {
+    0% {
+        transform: translateY(100%) scale(.5); /* Начальное положение и масштаб элемента */
+        opacity: 0; /* Начальная прозрачность элемента */
+        visibility: hidden; /* Скрытие элемента */
+    }
 
-0%{
-    transform: translateY(100%) scale(.5); /* Начальное положение и масштаб элемента */
-    opacity: 0; /* Начальная прозрачность элемента */
-    visibility:hidden; /* Скрытие элемента */
-}
+    16.6666666666%,
+    33.3333333333% {
+        transform: translateY(100%) scale(.7); /* Промежуточное положение и масштаб элемента */
+        opacity: .4; /* Промежуточная прозрачность элемента */
+        visibility: visible; /* Отображение элемента */
+    }
 
-16.6666666666%, 33.3333333333% {
-    transform: translateY(100%) scale(.7); /* Промежуточное положение и масштаб элемента */
-    opacity: .4; /* Промежуточная прозрачность элемента */
-    visibility:visible; /* Отображение элемента */
+    50%,
+    66.6666666666% {
+        transform: translateY(0) scale(1); /* Промежуточное положение и масштаб элемента */
+        opacity: 1; /* Промежуточная прозрачность элемента */
+        visibility: visible; /* Отображение элемента */
+    }
 
-}
-50%, 66.6666666666% {
-    transform: translateY(0) scale(1); /* Промежуточное положение и масштаб элемента */
-    opacity: 1; /* Промежуточная прозрачность элемента */
-    visibility:visible; /* Отображение элемента */
-}
-
-83.3333333333%, 100% {
-    transform: translateY(-100%) scale(.5); /* Конечное положение и масштаб элемента */
-    opacity: 0; /* Конечная прозрачность элемента */
-    visibility:visible; /* Отображение элемента */
-}
+    83.3333333333%,
+    100% {
+        transform: translateY(-100%) scale(.5); /* Конечное положение и масштаб элемента */
+        opacity: 0; /* Конечная прозрачность элемента */
+        visibility: visible; /* Отображение элемента */
+    }
 }
 
 .container {
@@ -248,20 +238,32 @@ body {
     margin-right: 20px; /* Расстояние между иконками */
 }
 
-@media (max-width: 1200px){
-    .fa-bars{
+@media (min-width: 1200px) {
+    .fa-bars {
         display: none;
         color: white;
-        font-size: 0px; 
+        font-size: 0px;
+        margin-left: 50px;
+    }
+}
+@media (max-width: 1200px) {
+    .fa-bars {
+        display: none;
+        color: white;
+        font-size: 0px;
         margin-left: 50px;
     }
 }
 
-@media (max-width: 992px){
-    .fa-bars{
+@media (max-width: 992px) {
+    #navbar li {
+        white-space: nowrap;
+    }
+    
+    .fa-bars {
         display: none;
         color: white;
-        font-size: 0px; 
+        font-size: 0px;
         margin-left: 50px;
     }
     .carousel {
@@ -272,62 +274,67 @@ body {
         bottom: 150px;
     }
 
-    .fa-moon{
+    .fa-moon {
         color: white;
         font-size: 20px;
         margin-left: 10px;
     }
 
+    .fa-globe {
+        color: white;
+        font-size: 20px;
+        margin-left: 10px;
+    }
 }
 
-@media (max-width: 768px){
-
+@media (max-width: 768px) {
     .logo {
         display: flex;
         flex-direction: column;
         align-items: center; /* Центрируем элементы по вертикали */
         margin-left: 30px;
     }
-    
+
     .logo .fa-meteor {
         margin-bottom: 5px;
         font-size: 24px;
         color: white;
-        margin-left: 50px;
+        margin-left: 0; /* Изменено на 0, чтобы уменьшить отступ при уменьшении экрана */
     }
-    
+
     .logo-text {
         color: white;
-        margin-left: 70px;
-    }    
+        margin-left: 0; /* Изменено на 0, чтобы уменьшить отступ при уменьшении экрана */
+    }
 
     .carousel {
-        width: 100%;
-        max-width: 500px;
-        position: absolute;
-        left: 10px;
-        bottom: 200px;
-        z-index: 0;
+        width: 100%; /* Изменено на 100%, чтобы слайдер занимал всю доступную ширину */
+        max-width: none; /* Изменено на none, чтобы удалить ограничение максимальной ширины слайдера */
+        position: static; /* Изменено на static, чтобы слайдер был расположен в потоке документа */
+        margin: 20px auto; /* Добавлен отступ сверху и снизу для центрирования слайдера */
+        bottom: auto; /* Изменено на auto, чтобы удалить позиционирование слайдера по нижнему краю */
+        left: auto; /* Изменено на auto, чтобы удалить позиционирование слайдера по левому краю */
     }
-    
+
     .footer-images {
-        display: none;
+        display: none; /* Изменено на none, чтобы скрыть иконки в подвале при уменьшении экрана */
     }
+
     .fa-bars {
         display: block;
         color: white;
-    font-size:48px; 
-    margin-left: 200px;
+        font-size: 48px;
+        margin-left:150px; /* Изменено на 10px, чтобы уменьшить отступ при уменьшении экрана */
     }
 
-    /* Меняем отображение при клике на иконку fa-bars */
+    /* Изменения для отображения меню при клике на иконку fa-bars */
     #navbar ul {
         display: none;
         position: absolute;
         top: 70px; /* Располагаем меню ниже шапки */
         left: 0;
         background-color: #007acc; /* Цвет фона меню */
-        width: 200px; /* Ширина меню */
+        width: 50%; /* Изменено на 100%, чтобы меню занимало всю доступную ширину */
         z-index: 1;
     }
 
@@ -360,33 +367,16 @@ body {
     }
 
     .carousel {
-        width: 80%; /* Ширина слайдера занимает 80% доступной ширины */
-        max-width: 500px; /* Ограничиваем максимальную ширину слайдера */
-        position: absolute; /* Установка позиции абсолютной, чтобы слайдер был независим от других элементов */
-        left: 10px; /* Расположение слева от страницы */
-        bottom: 100px; /* Располагаем слайдер ниже, уменьшив значение bottom */
-    }
-    .submenu{
-        display: none !important;
-    }
-}
-
-@media (max-width: 480px){
-    #navbar{
-        width: 800px;
+        width: 100%; /* Изменено на 100%, чтобы слайдер занимал всю доступную ширину */
+        max-width: none; /* Изменено на none, чтобы удалить ограничение максимальной ширины слайдера */
+        position: static; /* Изменено на static, чтобы слайдер был расположен в потоке документа */
+        margin: 20px auto; /* Добавлен отступ сверху и снизу для центрирования слайдера */
+        bottom: auto; /* Изменено на auto, чтобы удалить позиционирование слайдера по нижнему краю */
+        left: auto; /* Изменено на auto, чтобы удалить позиционирование слайдера по левому краю */
     }
 
-    .fa-bars {
-        display: block;
-        color: white;
-    font-size:48px; 
-    margin-right: 500px;
+    .submenu {
+        display: none !important; /* Изменено на none, чтобы скрыть подменю при уменьшении экрана */
     }
 
-    .header{
-        width: 100%;
-        min-height: 100vh;
-        background: url(img/fon.jpg) no-repeat center/cover;
-        background-size: 400px;
-    }
 }
